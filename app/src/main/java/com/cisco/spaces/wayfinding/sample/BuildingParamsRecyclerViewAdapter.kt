@@ -29,7 +29,7 @@ class BuildingParamsRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val buildingParams = listBuildingParams[position]
-        holder.buildingParamsNameView.text = buildingParams.buildingName
+        holder.buildingParamsNameView.text = buildingParams.name
         holder.itemView.setOnClickListener {
             listener.onBuildingSelected(buildingParams)
         }

@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SpacesWayFindingSample"
 include(":app")
+include(":SpacesWayfindingApp")
