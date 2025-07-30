@@ -16,7 +16,6 @@ import com.cisco.spaces.wayfinding.sample.handlers.CustomMapExitHandler
 import com.cisco.spaces.wayfinding.sample.handlers.CustomMapEventsHandler
 import com.cisco.spaces.wayfinding.sample.handlers.CustomPathFindingEventsHandler
 import com.ciscospaces.wayfinding.app.configuration.MapWidgetConfiguration
-import com.ciscospaces.wayfinding.app.configuration.MapWidgetOnBoardingConfiguration
 import com.ciscospaces.wayfinding.app.MapWidgetFragment
 import com.ciscospaces.wayfinding.app.enums.LoggerLevel
 import com.ciscospaces.wayfinding.app.SpacesWayFinding
@@ -159,14 +158,8 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
     private fun showMapWidget() {
         setupMapTheme()
-        val mapOnBoardingConfiguration = MapWidgetOnBoardingConfiguration(
-            appTitle = "Sample",
-            privacyPolicyUrlString = "https://your-privacy-policy-url.com",
-            topImageResId = R.drawable.ic_launcher_foreground
-        )
         val config = MapWidgetConfiguration.defaultConfiguration()
         config.isJoystickEnabled = true
-//        config.onBoardingConfiguration = mapOnBoardingConfiguration
         config.isOnboardingEnabled = true
 
 
@@ -177,25 +170,14 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
         ) { widget ->
             arrangeMapWidgetHandlers(widget)
 
-
             Handler(Looper.getMainLooper()).postDelayed({
                 spacesWayFinding.getPoIs()
-
-//                spacesWayFinding.getPoIById("2740a55b-d7b7-40ea-957d-1885ea0ac712")
                 spacesWayFinding.getFloors()
                  val level = spacesWayFinding.getFloor(3)
-//                 val level = spacesWayFinding.getFloor("f40c4363-df02-4f83-bce5-1d6fdb18c518")
-                val poiById = spacesWayFinding.getPoIById("1~102A")
-//                val poiById = spacesWayFinding.getPoIById("1~102A")
-//                 if (level != null) {
-//                    widget.showFloor(level)
-//                 }
-                if (poiById != null) {
-                    widget.showPoI(poiById)
+                if (level != null) {
+                    widget.showFloor(level)
                 }
             }, 7000)
-//            1~102A
-//            720bb80a-6ae7-461c-87e4-7457055b3465
 
         }
     }
