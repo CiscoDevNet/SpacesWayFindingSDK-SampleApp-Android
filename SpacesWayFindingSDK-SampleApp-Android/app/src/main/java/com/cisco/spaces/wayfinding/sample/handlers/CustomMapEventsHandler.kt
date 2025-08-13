@@ -43,11 +43,35 @@ class CustomMapEventsHandler(
         super.mapDidEndLoading(mapFragment)
         Log.d("CustomMapEventsHandler", "mapDidEndLoading")
 
+        addGeoJsonSource()
+
+        val layer = JSONObject().apply {
+            put("id", "sample-layer")
+            put("type", "symbol")
+            put("source", "source_ptr")
+            put("source-layer", "maps-layer")
+            put("minzoom", 17)
+            put("maxzoom", 24)
+            put("layout", JSONObject().apply {
+                put("text-field", "sample-icon")
+            })
+            put("paint", JSONObject().apply {
+                put("icon-image", "Restroom-n")
+            })
+        }
+        mapWidgetFragment.addLayer(layer) // Add a symbol layer to the map
+        addHeatMapLayer()
+        addMarkers()
+
+
+    }
+
+    private fun addGeoJsonSource(){
         val featuresJsonArray = JSONArray()
         val geometry1 = JSONObject().apply {
             put("type", "Point")
             put("coordinates", JSONArray().apply {
-                put(-122.38728110012187)
+                put(-122.38728110012187) // SFO12 Coordinates
                 put(37.7703786952669)
             })
         }
@@ -62,7 +86,7 @@ class CustomMapEventsHandler(
         val geometry2 = JSONObject().apply {
             put("type", "Point")
             put("coordinates", JSONArray().apply {
-                put(-122.3875076296718)
+                put(-122.3875076296718) // SFO12 Coordinates
                 put(37.77036141591536)
             })
         }
@@ -82,28 +106,14 @@ class CustomMapEventsHandler(
             put("type", "geojson")
             put("data", featureCollection.toString())
         }
-        mapWidgetFragment.addSource("beacon-marker-source", geoJsonSource)
-        val layer = JSONObject().apply {
-            put("id", "sample-layer")
-            put("type", "symbol")
-            put("source", "source_ptr")
-            put("source-layer", "maps-layer")
-            put("minzoom", 17)
-            put("maxzoom", 24)
-            put("filter", filterArray1)
-            put("layout", JSONObject().apply {
-                put("text-field", "sample-icon")
-            })
-            put("paint", JSONObject().apply {
-                put("icon-image", "Restroom-n")
-            })
-        }
-        mapWidgetFragment.addLayer(layer)
+        mapWidgetFragment.addSource("symbol-source", geoJsonSource)
+    }
 
+    private fun addHeatMapLayer(){
         val heatMapLayer = JSONObject().apply {
             put("id", "sample-layer")
             put("type", "heatmap")
-            put("source", "beacon-marker-source")
+            put("source", "symbol-source")
             put("source-layer", "maps-layer")
             put("minzoom", 10)
             put("maxzoom", 22)
@@ -166,23 +176,26 @@ class CustomMapEventsHandler(
             })
         }
         mapWidgetFragment.addLayer(heatMapLayer)
+    }
 
+    private fun addMarkers(){
         mapWidgetFragment.addMarkerLayer("marker") { markerLayer ->
-            markerLayer.setIcon("https://cdn.pixabay.com/photo/2014/04/03/10/03/google-309740_960_720.png")
-            JSONObject().apply {
-                put("sdf", false)
-            })
+            markerLayer.setIcon("https://cdn.pixabay.com/photo/2014/04/03/10/03/google-309740_960_720.png",
+                JSONObject().apply {
+                    put("sdf", false)
+                })
+
             markerLayer.setMarkers(JSONArray().apply {
                 put(JSONObject().apply {
                     put("coordinates", JSONArray().apply {
-                        put(-122.38728110012187)
+                        put(-122.38728110012187) // SFO12 Coordinates
                         put(37.7703786952669)
                     })
                     put("name", "Marker 1")
                 })
                 put(JSONObject().apply {
                     put("coordinates", JSONArray().apply {
-                        put(-122.3875076296718)
+                        put(-122.3875076296718) // SFO12 Coordinates
                         put(37.77036141591536)
                     })
                     put("name", "Marker 2")
