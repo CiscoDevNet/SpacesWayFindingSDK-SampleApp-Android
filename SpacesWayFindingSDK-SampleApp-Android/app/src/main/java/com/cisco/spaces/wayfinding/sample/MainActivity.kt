@@ -181,21 +181,12 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
             Handler(Looper.getMainLooper()).postDelayed({
                 spacesWayFinding.getPoIs()
 
-//                spacesWayFinding.getPoIById("2740a55b-d7b7-40ea-957d-1885ea0ac712")
                 spacesWayFinding.getFloors()
                  val level = spacesWayFinding.getFloor(3)
-//                 val level = spacesWayFinding.getFloor("f40c4363-df02-4f83-bce5-1d6fdb18c518")
-                val poiById = spacesWayFinding.getPoIById("1~102A")
-//                val poiById = spacesWayFinding.getPoIById("1~102A")
-//                 if (level != null) {
-//                    widget.showFloor(level)
-//                 }
-                if (poiById != null) {
-                    widget.showPoI(poiById)
+                if (level != null) {
+                    widget.showFloor(level)
                 }
-            }, 7000)
-//            1~102A
-//            720bb80a-6ae7-461c-87e4-7457055b3465
+            }, 5000)
 
         }
     }
