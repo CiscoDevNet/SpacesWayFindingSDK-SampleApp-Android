@@ -172,12 +172,13 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
             Handler(Looper.getMainLooper()).postDelayed({
                 spacesWayFinding.getPoIs()
+
                 spacesWayFinding.getFloors()
                  val level = spacesWayFinding.getFloor(3)
                 if (level != null) {
                     widget.showFloor(level)
                 }
-            }, 7000)
+            }, 5000)
 
         }
     }
