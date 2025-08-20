@@ -16,7 +16,6 @@ import com.cisco.spaces.wayfinding.sample.handlers.CustomMapExitHandler
 import com.cisco.spaces.wayfinding.sample.handlers.CustomMapEventsHandler
 import com.cisco.spaces.wayfinding.sample.handlers.CustomPathFindingEventsHandler
 import com.ciscospaces.wayfinding.app.configuration.MapWidgetConfiguration
-import com.ciscospaces.wayfinding.app.configuration.MapWidgetOnBoardingConfiguration
 import com.ciscospaces.wayfinding.app.MapWidgetFragment
 import com.ciscospaces.wayfinding.app.enums.LoggerLevel
 import com.ciscospaces.wayfinding.app.SpacesWayFinding
@@ -159,14 +158,8 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
     private fun showMapWidget() {
         setupMapTheme()
-        val mapOnBoardingConfiguration = MapWidgetOnBoardingConfiguration(
-            appTitle = "Sample",
-            privacyPolicyUrlString = "https://your-privacy-policy-url.com",
-            topImageResId = R.drawable.ic_launcher_foreground
-        )
         val config = MapWidgetConfiguration.defaultConfiguration()
         config.isJoystickEnabled = true
-//        config.onBoardingConfiguration = mapOnBoardingConfiguration
         config.isOnboardingEnabled = true
 
 
@@ -176,7 +169,6 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
             config
         ) { widget ->
             arrangeMapWidgetHandlers(widget)
-
 
             Handler(Looper.getMainLooper()).postDelayed({
                 spacesWayFinding.getPoIs()
