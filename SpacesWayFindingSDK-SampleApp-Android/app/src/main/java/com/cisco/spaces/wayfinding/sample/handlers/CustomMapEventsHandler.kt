@@ -43,25 +43,25 @@ class CustomMapEventsHandler(
         super.mapDidEndLoading(mapFragment)
         Log.d("CustomMapEventsHandler", "mapDidEndLoading")
 
-        addGeoJsonSource()
-
-        val layer = JSONObject().apply {
-            put("id", "sample-layer")
-            put("type", "symbol")
-            put("source", "source_ptr")
-            put("source-layer", "maps-layer")
-            put("minzoom", 17)
-            put("maxzoom", 24)
-            put("layout", JSONObject().apply {
-                put("text-field", "sample-icon")
-            })
-            put("paint", JSONObject().apply {
-                put("icon-image", "Restroom-n")
-            })
-        }
-        mapWidgetFragment.addLayer(layer) // Add a symbol layer to the map
-        addHeatMapLayer()
-        addMarkers()
+//        addGeoJsonSource()
+//
+//        val layer = JSONObject().apply {
+//            put("id", "sample-layer")
+//            put("type", "symbol")
+//            put("source", "source_ptr")
+//            put("source-layer", "maps-layer")
+//            put("minzoom", 17)
+//            put("maxzoom", 24)
+//            put("layout", JSONObject().apply {
+//                put("text-field", "sample-icon")
+//            })
+//            put("paint", JSONObject().apply {
+//                put("icon-image", "Restroom-n")
+//            })
+//        }
+//        mapWidgetFragment.addLayer(layer) // Add a symbol layer to the map
+//        addHeatMapLayer()
+//        addMarkers()
 
 
     }
