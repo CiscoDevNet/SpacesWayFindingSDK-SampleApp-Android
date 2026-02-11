@@ -33,10 +33,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
     private lateinit var buildingParamsFragment: BuildingParamsFragment
 
-    private val spacesWayFinding = SpacesWayFinding(
-        "vIcsaUQgiHLoANVw_3r0SBtE28HsHwFfL6JkvvVMVcI",
-        SpacesRegion.IO
-    )
+    private val spacesWayFinding = SpacesWayFinding(<api-key>,<region>)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
