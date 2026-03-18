@@ -43,6 +43,7 @@ class CustomMapEventsHandler(
         super.mapDidEndLoading(mapFragment)
         Log.d("CustomMapEventsHandler", "mapDidEndLoading")
 
+
 //        addGeoJsonSource()
 //
 //        val layer = JSONObject().apply {
