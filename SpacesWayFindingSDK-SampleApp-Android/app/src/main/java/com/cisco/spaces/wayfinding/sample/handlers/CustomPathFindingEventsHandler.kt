@@ -19,23 +19,23 @@ class CustomPathFindingEventsHandler(
      * Called when the user taps the close button during navigation
      * This can be used to clean up resources or update UI elements when navigation ends
      */
-    override fun pathFindingDidTapClose() {
-        Log.d("CustomPathFindingEventsHandler", "pathFindingDidTapClose")
+    override fun wayfindingDidTapClose() {
+        Log.d("CustomPathFindingEventsHandler", "wayfindingDidTapClose")
     }
 
     /**
      * Called when the user taps the close button while navigation is in progress
      * This can be used to show confirmation dialogs or handle premature navigation termination
      */
-    override fun wayfindingDidShown() {
-        Log.d("CustomPathFindingEventsHandler", "wayfindingDidShown")
+    override fun wayfindingDone() {
+        Log.d("CustomPathFindingEventsHandler", "wayfindingDone")
     }
 
     /**
      * Called when the user taps the close button after reaching the destination
      * This can be used to show completion messages or reset the UI to pre-navigation state
      */
-    override fun wayfindingDone() {
-        Log.d("CustomPathFindingEventsHandler", "wayfindingDone")
+    override fun wayfindingDidShown() {
+        Log.d("CustomPathFindingEventsHandler", "wayfindingDidShown")
     }
 }

@@ -63,6 +63,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
                 buildingParamsFragment = BuildingParamsFragment(spacesBuildings)
                 showBuildings()
             }
+            Log.i("MainActivity", "getAllBuildings: fetched ${spacesBuildings?.size ?: 0} buildings, error=${error ?: "none"}")
         }
     }
 
@@ -132,6 +133,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
                 showLoading(state.name)
 
             }
+            Log.i("MainActivity", "selectBuilding state update: building=${building.name}, state=${state.name} (code=${state.intValue})")
         }
     }
 
@@ -168,12 +170,34 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
             arrangeMapWidgetHandlers(widget)
 
             Handler(Looper.getMainLooper()).postDelayed({
-                spacesWayFinding.getPoIs()
+                val pois = spacesWayFinding.getPoIs()
+                Log.i("MainActivity", "getPoIs: fetched ${pois?.size ?: 0} PoIs")
 
-                spacesWayFinding.getFloors()
-                 val level = spacesWayFinding.getFloor(3)
+                val floors = spacesWayFinding.getFloors()
+                Log.i("MainActivity", "getFloors: fetched ${floors?.size ?: 0} floors")
+
+                val level = spacesWayFinding.getFloor(0)
+                Log.i("MainActivity", "getFloor(level=3): name=${level?.building}, id=${level?.id}")
+
                 if (level != null) {
-                    widget.showFloor(level)
+                   // widget.showFloor(level)
+                    Log.i("MainActivity", "showFloor: ${level.level}")
+                }
+
+                floors?.firstOrNull()?.let { firstFloor ->
+                    val levelById = spacesWayFinding.getFloor(firstFloor.id)
+                    Log.i("MainActivity", "getFloor(by id=${firstFloor.id}): level=${levelById?.level}, name=${levelById?.longName}")
+
+                    val floorPoIs = spacesWayFinding.getPoIs(firstFloor.id)
+                    Log.i("MainActivity", "getPoIs(for floor=${firstFloor.id}): fetched ${floorPoIs?.size ?: 0} PoIs")
+                }
+
+                pois?.forEach { poi ->
+                    //val poiById = spacesWayFinding.getPoIById(poi.id)
+                    //Log.i("MainActivity", "getPoIById(${poi.id}): name=${poiById?.name}")
+
+                    //val poiByExtId = spacesWayFinding.getPoiByExternalId(poi.externalId ?: "")
+                    //Log.i("MainActivity", "getPoiByExternalId(${poi.externalId}): name=${poiByExtId?.name}")
                 }
             }, 5000)
 
