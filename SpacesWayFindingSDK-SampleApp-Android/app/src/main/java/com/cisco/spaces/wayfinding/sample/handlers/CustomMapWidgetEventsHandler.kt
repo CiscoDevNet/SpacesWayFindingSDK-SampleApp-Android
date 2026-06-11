@@ -39,6 +39,7 @@ class CustomMapWidgetEventsHandler(
         runCatching {
             addGeoJsonSource()
             addSymbolLayer()
+            addHeatMapLayer()
             addMarkers()
         }.onFailure { throwable ->
             customMapContentAdded = false
@@ -199,19 +200,11 @@ class CustomMapWidgetEventsHandler(
                 put("text-color", "#FFFFFF")
                 put("text-halo-color", "#000000")
                 put("text-halo-width", 1)
+                put("text-field", "{name}")
             })
             markerLayer.setLayout(JSONObject().apply {
                 put("icon-size", 0.5)
                 put("icon-allow-overlap", true)
-                put("text-field", JSONArray().apply {
-                    put("get")
-                    put("name")
-                })
-                put("text-offset", JSONArray().apply {
-                    put(0)
-                    put(1.2)
-                })
-                put("text-anchor", "top")
             })
             markerLayer.show()
         }

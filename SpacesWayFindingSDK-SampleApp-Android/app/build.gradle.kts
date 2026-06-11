@@ -57,4 +57,8 @@ dependencies {
     implementation(libs.cardview)
     implementation(libs.lifecycle)
 
+    //Beacon libs
+    implementation(libs.altbeacon)
+    implementation(libs.androidx.fragment.ktx)
+
 }
