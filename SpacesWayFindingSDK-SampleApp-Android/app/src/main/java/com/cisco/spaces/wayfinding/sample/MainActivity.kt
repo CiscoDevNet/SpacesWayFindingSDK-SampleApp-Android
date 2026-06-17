@@ -172,7 +172,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
                 spacesWayFinding.getFloors()
                  val level = spacesWayFinding.getFloor(3)
-                val poi = spacesWayFinding.getPoIByFid(<value-fid>)//fid value
+                val poi = spacesWayFinding.getPoIByFid(fid = "<value-fid>")//fid value
                 if(poi != null){
                     widget.showPoI(poi)
                 }
