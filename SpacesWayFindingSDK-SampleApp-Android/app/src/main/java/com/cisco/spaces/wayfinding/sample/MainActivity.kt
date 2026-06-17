@@ -172,9 +172,13 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
                 spacesWayFinding.getFloors()
                  val level = spacesWayFinding.getFloor(3)
-                if (level != null) {
-                    widget.showFloor(level)
+                val poi = spacesWayFinding.getPoIByFid(<value-fid>)//fid value
+                if(poi != null){
+                    widget.showPoI(poi)
                 }
+//                if (level != null) {
+//                    widget.showFloor(level)
+//                }
             }, 5000)
 
         }
