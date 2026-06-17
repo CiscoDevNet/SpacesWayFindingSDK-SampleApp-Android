@@ -38,4 +38,5 @@ class CustomPathFindingEventsHandler(
     override fun wayfindingDidShown() {
         Log.d("CustomPathFindingEventsHandler", "wayfindingDidShown")
     }
+
 }
