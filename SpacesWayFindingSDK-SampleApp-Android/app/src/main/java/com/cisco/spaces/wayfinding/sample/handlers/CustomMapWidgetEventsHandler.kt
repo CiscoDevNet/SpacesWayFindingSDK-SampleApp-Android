@@ -49,8 +49,8 @@ class CustomMapWidgetEventsHandler(
 
     private fun addGeoJsonSource() {
         val featuresJsonArray = JSONArray().apply {
-            put(createPointFeature(-122.38728110012187, 37.7703786952669, "Marker 1", 1))
-            put(createPointFeature(-122.3875076296718, 37.77036141591536, "Marker 2", 1))
+            put(createPointFeature(-122.38728110012187, 37.7703786952669, "Marker 1", 1, 1))
+            put(createPointFeature(-122.3875076296718, 37.77036141591536, "Marker 2", 1, 2))
         }
 
         val featureCollection = JSONObject().apply {
@@ -70,7 +70,8 @@ class CustomMapWidgetEventsHandler(
         longitude: Double,
         latitude: Double,
         name: String,
-        magnitude: Int
+        magnitude: Int,
+        level: Int
     ): JSONObject {
         val geometry = JSONObject().apply {
             put("type", "Point")
@@ -86,6 +87,7 @@ class CustomMapWidgetEventsHandler(
             put("properties", JSONObject().apply {
                 put("name", name)
                 put("magnitude", magnitude)
+                put("lvl", level)
             })
         }
     }
@@ -192,8 +194,8 @@ class CustomMapWidgetEventsHandler(
             )
 
             markerLayer.setMarkers(JSONArray().apply {
-                put(createMarker(-122.38728110012187, 37.7703786952669, "Marker 1"))
-                put(createMarker(-122.3875076296718, 37.77036141591536, "Marker 2"))
+                put(createMarker(-122.38728110012187, 37.7703786952669, "Marker 1", 1))
+                put(createMarker(-122.3875076296718, 37.77036141591536, "Marker 2", 2))
             })
             markerLayer.setPaint(JSONObject().apply {
                 put("icon-opacity", 0.8)
@@ -210,13 +212,14 @@ class CustomMapWidgetEventsHandler(
         }
     }
 
-    private fun createMarker(longitude: Double, latitude: Double, name: String): JSONObject {
+    private fun createMarker(longitude: Double, latitude: Double, name: String, level: Int): JSONObject {
         return JSONObject().apply {
             put("coordinates", JSONArray().apply {
                 put(longitude)
                 put(latitude)
             })
             put("name", name)
+            put("lvl", level)
         }
     }
 

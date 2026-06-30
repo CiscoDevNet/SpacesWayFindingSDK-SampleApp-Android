@@ -177,7 +177,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
                 Log.i("MainActivity", "getFloors: fetched ${floors?.size ?: 0} floors")
 
                 val level = spacesWayFinding.getFloor(0)
-                Log.i("MainActivity", "getFloor(level=3): name=${level?.building}, id=${level?.id}")
+                Log.i("MainActivity", "getFloor(level=0): name=${level?.building}, id=${level?.id}")
 
                 if (level != null) {
                    // widget.showFloor(level)
@@ -190,14 +190,6 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
                     val floorPoIs = spacesWayFinding.getPoIs(firstFloor.id)
                     Log.i("MainActivity", "getPoIs(for floor=${firstFloor.id}): fetched ${floorPoIs?.size ?: 0} PoIs")
-                }
-
-                pois?.forEach { poi ->
-                    //val poiById = spacesWayFinding.getPoIById(poi.id)
-                    //Log.i("MainActivity", "getPoIById(${poi.id}): name=${poiById?.name}")
-
-                    //val poiByExtId = spacesWayFinding.getPoiByExternalId(poi.externalId ?: "")
-                    //Log.i("MainActivity", "getPoiByExternalId(${poi.externalId}): name=${poiByExtId?.name}")
                 }
             }, 5000)
 
