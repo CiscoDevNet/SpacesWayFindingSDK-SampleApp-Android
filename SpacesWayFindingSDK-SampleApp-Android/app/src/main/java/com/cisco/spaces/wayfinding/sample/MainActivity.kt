@@ -159,7 +159,6 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
         setupMapTheme()
         val config = MapWidgetConfiguration.defaultConfiguration()
         config.isJoystickEnabled = true
-        config.isOnboardingEnabled = true
 
 
         MapWidgetFragment.newInstance(
