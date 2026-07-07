@@ -14,7 +14,7 @@ A sample Android application demonstrating the integration and usage of the Spac
 - JDK 17 or later
 - Android 8.0(SDK version 26) or later
 - Kotlin 2.0.0 or later
-- SpacesWayFindingSDK and SpacesWayFindingApp (included as aar files)
+- SpacesWayFinding-Core-SDK, SpacesWayFinding-UI-SDK and SpacesWayFindingApp (included as aar files)
 
 ## Getting Started
 
@@ -32,9 +32,9 @@ Open `SpacesWayFindingSDK-SampleApp-Android` in Android Studio.
 - Build and run the app.
 
 ### 4. SDK Integration
-- The required libraries (`SpacesWayFindingSDK`, `SpacesWayFindingApp`) are included in the `app/libs/` directory.
+- The required libraries (`SpacesWayFinding-Core-SDK`, `SpacesWayFinding-UI-SDK`, `SpacesWayFindingApp`) are included in the `app/libs/` directory.
 - Go to `File` and click `Sync Project with Gradle Files` to sync with Gradle.
-
+  
 ## Project Structure
 - `app/src/main/java/com/cisco/spaces/wayfinding/sample/`
   - `MainActivity.kt`: The main entry point of the application which handles building and floor selection
@@ -43,6 +43,7 @@ Open `SpacesWayFindingSDK-SampleApp-Android` in Android Studio.
   - `ProgressFragment.kt`: Progress indicator UI component
   - `handlers/`: Contains custom event handlers
       - `CustomMapEventsHandler.kt`: Handles map-related events
+      - `CustomMapWidgetEventsHandler.kt`: Handles map-widget lifecycle events
       - `CustomMapExitHandler.kt`: Manages map exit events
       - `CustomPathFindingEventsHandler.kt`: Handles navigation events
 - `app/src/main/res/`
@@ -53,7 +54,7 @@ Open `SpacesWayFindingSDK-SampleApp-Android` in Android Studio.
 - `build.gradle.kts`: Gradle build scripts for the application and project-level dependencies.
 
 ## Documentation
-- See `WF-SDK-V1.2-Document.pdf` for detailed SDK documentation and API reference.
+- See `WF-SDK-V1.4-Document.pdf` for detailed SDK documentation and API reference.
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
