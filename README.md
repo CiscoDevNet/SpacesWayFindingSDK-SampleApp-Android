@@ -50,7 +50,7 @@ Open `SpacesWayFindingSDK-SampleApp-Android` in Android Studio.
   - `layout/`: XML files defining the UI for activities.
   - `drawable/`: Image/Icon assets used within the application.
   - `values/`: Resource files for strings, colors, and styles.
-- `app/libs/`: Contains the required `SpacesWayFindingSDK.aar` and `SpacesWayFindingApp.aar` libraries.
+- `app/libs/`: Contains the required `SpacesWayFinding-Core-SDK.aar`, `SpacesWayFinding-UI-SDK.aar` and `SpacesWayFindingApp.aar` libraries.
 - `build.gradle.kts`: Gradle build scripts for the application and project-level dependencies.
 
 ## Documentation
