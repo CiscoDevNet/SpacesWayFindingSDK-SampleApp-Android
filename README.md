@@ -7,7 +7,7 @@ A sample Android application demonstrating the integration and usage of the Spac
 - Building and floor selection
 - Pathfinding and navigation
 - Custom event handling for map and navigation events
-- Example integration of SpacesWayFindingSDK and SpacesWayFindingApp libraries
+- Example integration of SpacesWayFinding-Core-SDK, SpacesWayFinding-UI-SDK and SpacesWayFindingApp libraries
 
 ## Requirements
 - Koala Feature Drop | 2024.2.1 or later
