@@ -20,6 +20,7 @@ import com.ciscospaces.wayfinding.app.configuration.MapWidgetConfiguration
 import com.ciscospaces.wayfinding.app.MapWidgetFragment
 import com.ciscospaces.wayfinding.app.enums.LoggerLevel
 import com.ciscospaces.wayfinding.app.SpacesWayFinding
+import com.ciscospaces.wayfinding.app.enums.PersonaType
 import com.ciscospaces.wayfinding.app.enums.SpacesRegion
 import com.ciscospaces.wayfinding.app.enums.SpacesWayFindingState
 import com.ciscospaces.wayfinding.app.models.MapWidgetTheme
@@ -127,6 +128,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 //        showLoading("Initializing...")
         val params = SpacesWayFindingParams(building)
         params.loggerLevel = LoggerLevel.VERBOSE
+        params.personaType = PersonaType.VISITOR
         spacesWayFinding.selectBuilding(applicationContext, params) { state ->
             handleStateUpdate(state)
             runOnUiThread {
