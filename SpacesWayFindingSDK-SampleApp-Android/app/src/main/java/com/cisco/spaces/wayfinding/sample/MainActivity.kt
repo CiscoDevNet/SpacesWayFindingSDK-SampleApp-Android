@@ -14,7 +14,6 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.FragmentActivity
 import com.cisco.spaces.wayfinding.sample.handlers.CustomMapExitHandler
 import com.cisco.spaces.wayfinding.sample.handlers.CustomMapEventsHandler
-import com.cisco.spaces.wayfinding.sample.handlers.CustomMapWidgetEventsHandler
 import com.cisco.spaces.wayfinding.sample.handlers.CustomPathFindingEventsHandler
 import com.ciscospaces.wayfinding.app.configuration.MapWidgetConfiguration
 import com.ciscospaces.wayfinding.app.MapWidgetFragment
@@ -215,8 +214,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
     }
 
     private fun arrangeMapWidgetHandlers(mapWidget: MapWidgetFragment) {
-        mapWidget.mapWidgetEventsHandler = CustomMapWidgetEventsHandler(mapWidget)
-        mapWidget.mapEventsHandler = CustomMapEventsHandler(mapWidget)
+        mapWidget.mapEventsHandler = CustomMapEventsHandler(mapWidget, spacesWayFinding)
         mapWidget.exitButtonEventsHandler = CustomMapExitHandler(this)
         mapWidget.pathFindingEventsHandler = CustomPathFindingEventsHandler(mapWidget)
     }
