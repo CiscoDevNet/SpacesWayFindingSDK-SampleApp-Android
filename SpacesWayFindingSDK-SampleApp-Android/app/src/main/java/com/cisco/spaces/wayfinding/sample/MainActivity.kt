@@ -1,5 +1,6 @@
 package com.cisco.spaces.wayfinding.sample
 
+import android.content.ComponentCallbacks2
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,6 +26,7 @@ import com.ciscospaces.wayfinding.app.enums.SpacesWayFindingState
 import com.ciscospaces.wayfinding.app.models.MapWidgetTheme
 import com.ciscospaces.wayfinding.app.models.SpacesBuilding
 import com.ciscospaces.wayfinding.app.models.SpacesWayFindingParams
+import com.pointrlabs.ui.map.views.PTRMapWidgetFragment
 
 
 class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
@@ -34,7 +36,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
 
     private lateinit var buildingParamsFragment: BuildingParamsFragment
 
-    private val spacesWayFinding = SpacesWayFinding(<api-key>,<region>)
+    private val spacesWayFinding = SpacesWayFinding("YOUR_API_KEY", SpacesRegion.IO)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +50,20 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
         showLoading("Loading buildings...")
 
         loadInitialData()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level < TRIM_MEMORY_UI_HIDDEN) return
+
+        val ciscoMapWidget = supportFragmentManager
+            .findFragmentById(R.id.fragment_container) as? MapWidgetFragment ?: return
+
+        ciscoMapWidget.childFragmentManager.fragments
+            .filterIsInstance<PTRMapWidgetFragment>()
+            .firstOrNull()
+            ?.mapFragment
+            ?.onLowMemory() // forwards to MapLibre, which drops its caches
     }
 
     private fun loadInitialData() {
@@ -214,7 +230,7 @@ class MainActivity : FragmentActivity(), BuildingParamsFragment.Listener {
     }
 
     private fun arrangeMapWidgetHandlers(mapWidget: MapWidgetFragment) {
-        mapWidget.mapEventsHandler = CustomMapEventsHandler(mapWidget, spacesWayFinding)
+        mapWidget.mapEventsHandler = CustomMapEventsHandler(mapWidget)
         mapWidget.exitButtonEventsHandler = CustomMapExitHandler(this)
         mapWidget.pathFindingEventsHandler = CustomPathFindingEventsHandler(mapWidget)
     }
